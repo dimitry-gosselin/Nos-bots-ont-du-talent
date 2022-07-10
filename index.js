@@ -24,6 +24,12 @@ bot.on('message', message => {
 
     if(!url) return message.channel.send({ content : 'No url provided' });
 
+    const pattern = /http(?:s?):\/\/(?:www\.)?youtu(?:be\.com\/watch\?v=|\.be\/)([\w\-\_]*)(&(amp;)?‌​[\w\?‌​=]*)?/;
+
+    if(!pattern.test(url)){
+      return message.channel.send({ content : 'Erreur: lien non-valid' });
+    }
+
     const stream = ytdl(url, { filter: 'audioonly' });
 
     const channel = message.member.voice.channel;
@@ -72,9 +78,9 @@ async function loadImage(sub_id){
       'X-API-KEY': cat_api_key,
   }
   var query_params = {
-    'has_breeds':false,
-    'mime_types':'jpg,png,gif',
-    'size':'full',
+    'has_breeds': false,
+    'mime_types': 'jpg,png,gif',
+    'size': 'full',
     'sub_id': sub_id,
     'limit' : 1
   }
