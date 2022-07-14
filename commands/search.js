@@ -11,8 +11,7 @@ module.exports = class Cat extends Command{
     }
 
     static action(message){
-        let args = message.content.split(' ')
-        const keyword = args[1];
+        let keyword = message.content.replace('!search', '').trim();
 
         
         if(!keyword) return message.channel.send({ content : 'Il faut rechercher au moins un mot.' });
@@ -20,7 +19,8 @@ module.exports = class Cat extends Command{
         var opts = {
             maxResults: 5,
             key: 'AIzaSyAuI0zRCEi0MkZ59VZjkCE0adZsI4YJCro',
-            type: 'video'
+            type: 'video',
+            videoCategoryId: 10
         };
         
         search(keyword, opts, function(err, videos) {
@@ -29,7 +29,6 @@ module.exports = class Cat extends Command{
             var messageDisplay = '';
             var i = 1;
             for(var key in videos){
-                console.log(video);
                 var video = videos[key];
                 messageDisplay += i+'. '+video.title+'\n'
                 i++;
