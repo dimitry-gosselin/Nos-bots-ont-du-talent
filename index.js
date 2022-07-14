@@ -51,7 +51,7 @@ bot.on('message', message => {
     });
   }
   
-  if (message.content.toLowerCase().startsWith('cats') || message.content.toLowerCase().startsWith('Cats')) {
+  if (message.content.toLowerCase().startsWith('cats') || message.content.toLowerCase().startsWith('cat')) {
     messageRecieved(message);
   }
 })
@@ -62,24 +62,34 @@ bot.login(discord_bot_token)
 
 async function messageRecieved(message){
   try{
-    var images = await loadImage(message.author.username);
+    var images = await loadImage(message.author.username, message);
     var image = images[0];
     
     message.channel.send({files: [image.url] });
-  }catch(error)
-  {
+  }catch(error){
     console.log(error)
   }
 }
 
 
-async function loadImage(sub_id){
+async function loadImage(sub_id, message){
+
+  let args = message.content.split(' ')
+  const format = args[1];
+
+  let mimeTypes = 'jpg,png,gif';
+  console.log(format)
+  console.log(typeof(format) )
+  if(typeof(format) != 'undefined' && format.toLowerCase() == 'gif'){
+    mimeTypes = 'gif';
+  }
+
   var headers = {
       'X-API-KEY': cat_api_key,
   }
   var query_params = {
     'has_breeds': false,
-    'mime_types': 'jpg,png,gif',
+    'mime_types': mimeTypes,
     'size': 'full',
     'sub_id': sub_id,
     'limit' : 1
