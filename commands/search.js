@@ -2,6 +2,7 @@ const Command = require('./command')
 const fs = require("fs");
 var search = require('youtube-search');
 
+const youtube_api_key = process.env.YOUTUBE_API_KEY;
 
 module.exports = class Cat extends Command{
 
@@ -18,7 +19,7 @@ module.exports = class Cat extends Command{
 
         var opts = {
             maxResults: 5,
-            key: 'AIzaSyAuI0zRCEi0MkZ59VZjkCE0adZsI4YJCro',
+            key: youtube_api_key,
             type: 'video',
             videoCategoryId: 10
         };
