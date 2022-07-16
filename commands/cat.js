@@ -17,15 +17,21 @@ module.exports = class Cat extends Command{
     }
 
     static async messageRecieved(message){
-        console.log('messageRecieved')
-      try{
-        var images = await this.loadImage(message.author.username, message);
-        var image = images[0];
-        
-        message.channel.send({files: [image.url] });
-      }catch(error){
-        console.log(error)
-      }
+
+        let args = message.content.split(' ')
+        const format = args[1];
+        if(typeof(format) != 'undefined' && format.toLowerCase() == 'help'){
+            return message.channel.send({ content : '**Miaouh!**\n\n**cat**: Affiche un potit chat.\n**cat help**: Affiche l\'aide pour les débiles.\n**cat gif**: Affiche un GIF de potit chat.' });
+        }
+
+        try{
+            var images = await this.loadImage(message.author.username, message);
+            var image = images[0];
+            
+            message.channel.send({files: [image.url] });
+        }catch(error){
+            console.log(error)
+        }
     }
 
     static async loadImage(sub_id, message){
