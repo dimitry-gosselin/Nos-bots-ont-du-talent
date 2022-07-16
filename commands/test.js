@@ -6,17 +6,24 @@ module.exports = class TestAnt extends Command{
         
 		var urlImg = "http://www2.coucoucircus.org/audios/images-varietes/carlos-bigbisous.jpg";
 		
-		var lowerMsg = message.content.toLowerCase();
+		var answer1 = "toto!";
+		var answer2 = "tata!";
 		
-		if (lowerMsg.indexOf("toto") != -1) {
-			message.channel.send({ content:"toto!" });
+		var lowerMsg = message.content.trim().toLowerCase().valueOf();
+		
+		if (lowerMsg == answer1 || lowerMsg == answer2) {
+			// protecting against self loop
+			return false;	
+		}
+		else if (lowerMsg.indexOf("toto") != -1) {
+			message.channel.send({ content:answer1 });
 			return true;
 		}
 		else if (lowerMsg.indexOf("tata") != -1) {
-			message.channel.send({ files:[urlImg], content:"tata!" });
+			message.channel.send({ files:[urlImg], content:answer2 });
 			return true;
 		}
 
-        return false;
+        return false;t
     }
 }
