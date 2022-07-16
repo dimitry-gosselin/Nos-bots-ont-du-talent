@@ -8,11 +8,11 @@ module.exports = class TestAnt extends Command{
 		
 		var lowerMsg = message.toLowerCase();
 		
-		if (lowerMsg.indexOf("toto")) {
+		if (lowerMsg.indexOf("toto") != -1) {
 			message.channel.send({ content:"toto!" });
 			return true;
 		}
-		else if (lowerMsg.indexOf("tata")) {
+		else if (lowerMsg.indexOf("tata") != -1) {
 			message.channel.send({ files:[urlImg], content:"tata!" });
 			return true;
 		}
