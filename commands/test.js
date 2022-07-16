@@ -6,8 +6,8 @@ module.exports = class TestAnt extends Command{
         
 		var urlImg = "http://www2.coucoucircus.org/audios/images-varietes/carlos-bigbisous.jpg";
 		
-		var answer1 = "toto!";
-		var answer2 = "tata!";
+		var answer1 = "titi!";
+		var answer2 = "tutu!";
 		
 		var lowerMsg = message.content.trim().toLowerCase().valueOf();
 		
@@ -24,6 +24,6 @@ module.exports = class TestAnt extends Command{
 			return true;
 		}
 
-        return false;t
+        return false;
     }
 }
