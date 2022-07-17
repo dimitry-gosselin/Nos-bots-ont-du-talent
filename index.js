@@ -3,6 +3,7 @@ const bot = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MES
 
 const Play = require('./commands/play')
 const Cat = require('./commands/cat')
+const Gif = require('./commands/gif')
 const Search = require('./commands/search')
 const TestAnt = require("./commands/test")
 
@@ -13,7 +14,7 @@ bot.on('ready', function () {
 })
 
 bot.on('message', message => {
-  let commandUsed = Cat.parse(message) || Search.parse(message) || Play.parse(message) || TestAnt.parse(message);
+  let commandUsed = Cat.parse(message) || Search.parse(message) || Gif.parse(message) || TestAnt.parse(message) || Play.parse(message);
 })
 
 bot.login(discord_bot_token)
