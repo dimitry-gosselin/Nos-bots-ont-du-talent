@@ -18,12 +18,14 @@ module.exports = class Cat extends Command{
         if(typeof(keywords) == 'undefined'){
             return message.channel.send({ content : 'Il faut au moins 1 mot clé.' });
         }
-        giphy.random(keywords, function (err, res) {
-            console.log()
-            if(typeof(res.data) != 'undefined' && typeof(res.data.images) != 'undefined' && typeof(res.data.images.downsized) != 'undefined' && typeof(res.data.images.downsized.url) != 'undefined'){
+        giphy.translate(keywords, function (err, res) {
+            if(typeof(res) != 'undefined' && typeof(res.data) != 'undefined' && typeof(res.data.images) != 'undefined' && typeof(res.data.images.downsized) != 'undefined' && typeof(res.data.images.downsized.url) != 'undefined'){
                 var image = res.data.images.downsized.url;
+                message.channel.send({files: [image] });
+            }else{
+                console.log('rien trouvé')
+                console.log(res)
             }
-            message.channel.send({files: [image] });
         });
     }
 }
