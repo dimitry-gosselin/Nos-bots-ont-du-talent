@@ -6,7 +6,7 @@ const Cat = require('./commands/cat')
 const Gif = require('./commands/gif')
 const Search = require('./commands/search')
 const TestAnt = require("./commands/test")
-
+const AuPied = require("./commands/aupied")
 const discord_bot_token = process.env.DISCORD_BOT_TOKEN;
 
 bot.on('ready', function () {
@@ -14,7 +14,7 @@ bot.on('ready', function () {
 })
 
 bot.on('message', message => {
-  let commandUsed = Cat.parse(message) || Search.parse(message) || Gif.parse(message) || TestAnt.parse(message) || Play.parse(message);
+  let commandUsed = AuPied.parse(message) || Cat.parse(message) || Search.parse(message) || Gif.parse(message) || TestAnt.parse(message) || Play.parse(message);
 })
 
 bot.login(discord_bot_token)
